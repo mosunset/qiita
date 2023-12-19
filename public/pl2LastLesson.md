@@ -91,7 +91,7 @@ game_loop:
 ```
 
 ## サブルーチン化
-[LMS資料](https://lms.kochi-tech.ac.jp/pluginfile.php/207510/mod_resource/content/1/%E3%82%B5%E3%83%95%E3%82%99%E3%83%AB%E3%83%BC%E3%83%81%E3%83%B3.pdf)
+[--- LMS資料 ---](https://lms.kochi-tech.ac.jp/pluginfile.php/207510/mod_resource/content/1/%E3%82%B5%E3%83%95%E3%82%99%E3%83%AB%E3%83%BC%E3%83%81%E3%83%B3.pdf)
 
 プログラム冒頭に仕様を記述したコメントを書くこと
 ```assembly
