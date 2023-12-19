@@ -5,7 +5,7 @@ tags:
   - assembly
   - ARM
 private: true
-updated_at: '2023-12-19T22:11:37+09:00'
+updated_at: '2023-12-19T22:49:53+09:00'
 id: 24b78743f032755cedef
 organization_url_name: null
 slide: false
@@ -13,7 +13,8 @@ ignorePublish: false
 ---
 # 情報学群実験第2最終課題設計書
 ## 概要
-このプロジェクトは、8x8マスのスネークゲームをアセンブリ言語で実装するものである。ゲームは砲弾型LED(緑)、ビープスピーカー、および4つの操作用ボタンを使用してプレイヤーが操作する。
+このプロジェクトは、8x8マスのスネークゲームをアセンブリ言語で実装するものである。<br>
+ゲームは砲弾型LED(緑)、ビープスピーカー、および4つの操作用ボタンを使用してプレイヤーが操作する。
 
 |       |       |       |       |       |       |       |       |          |         |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :------: | :-----: |
@@ -54,7 +55,11 @@ ignorePublish: false
 5. ゲーム状態のLED表示の更新
 6. イベント発生時に単音式スピーカーでサウンド通知
 
-## コード例（疑似コード）
+## コード構成例
+* `.section .init`のある実行開始ルーチン（メイン）
+
+
+## コード例:メインのみ（疑似コード）
 
 ```assembly
 section .data
@@ -76,4 +81,63 @@ game_loop:
     @ イベント発生時のサウンド通知
     @ ゲームオーバーの場合、終了
     @ ゲームループの再実行
+```
+
+## サブルーチン化
+[LMS資料](https://lms.kochi-tech.ac.jp/pluginfile.php/207510/mod_resource/content/1/%E3%82%B5%E3%83%95%E3%82%99%E3%83%AB%E3%83%BC%E3%83%81%E3%83%B3.pdf)
+
+プログラム冒頭に仕様を記述したコメントを書くこと
+```assembly
+@--------------------------------------------------
+    @ random0to80
+    @     xorshiftにより0から80までのランダムな値を返す
+    @ input:
+    @     none
+    @ return_value:
+    @     r0: 0 to 80 のランダムな値
+@--------------------------------------------------
+random0to80:
+    push    {r1 - r3, lr}
+
+    @ 初期値
+    add     r0, r0, r1
+    add     r0, r0, r2
+    add     r0, r0, r3
+    add     r0, r0, r4
+    add     r0, r0, r5
+    add     r0, r0, r6
+    add     r0, r0, r7
+    add     r0, r0, r8
+    add     r0, r0, r9
+    add     r0, r0, r10
+    add     r0, r0, r11
+    add     r0, r0, r12
+    add     r0, r0, r13
+    add     r0, r0, r14
+    add     r0, r0, r15
+
+    @ x ^= x << 3;
+    mov     r1, r0, lsl #3
+    eor     r0, r1, r0
+
+    @ x ^= x >> 13;
+    mov     r1, r0, lsr #13
+    eor     r0, r1, r0
+
+    @ x ^= x << 7;
+    mov     r1, r0, lsl #7
+    eor     r0, r1, r0
+
+    @ abs(x);
+    movs    r1, r0
+    rsbmi   r1, r1, #0
+
+    @ x % 81
+    mov     r2, #81
+    udiv    r3, r1, r2
+    mul     r0, r3, r2
+    sub     r0, r1, r0
+
+    pop     {r1 - r3, lr}
+    bx      lr
 ```
