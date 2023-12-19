@@ -72,7 +72,7 @@ and more…
 section .data
     @ データ定義
 
-section .text
+section .init
     global _start
 
 _start:
