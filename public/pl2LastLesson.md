@@ -10,4 +10,4 @@ organization_url_name: null
 slide: false
 ignorePublish: false
 ---
-# new article body
+# 情報学群実験第2最終課題設計書
