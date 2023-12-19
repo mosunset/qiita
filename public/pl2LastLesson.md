@@ -56,8 +56,13 @@ ignorePublish: false
 6. イベント発生時に単音式スピーカーでサウンド通知
 
 ## コード構成例
-* `.section .init`のある実行開始ルーチン（メイン）
-
+* メイン: `.section .init`のある実行開始ルーチン
+  * 以下サブルーチン
+* display: frame_bufferを表示
+* input_button: 押されたボタンを返す
+* led_out: 入力によって点灯パターンを変化させる
+* random0to80: 0から80までのランダムな値を返す
+and more…
 
 ## コード例:メインのみ（疑似コード）
 
