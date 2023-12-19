@@ -94,7 +94,7 @@ game_loop:
 [--- LMS資料 ---](https://lms.kochi-tech.ac.jp/pluginfile.php/207510/mod_resource/content/1/%E3%82%B5%E3%83%95%E3%82%99%E3%83%AB%E3%83%BC%E3%83%81%E3%83%B3.pdf)
 
 プログラム冒頭に仕様を記述したコメントを書くこと
-```assembly:random0to80
+```assembly:random0to80.s
 @--------------------------------------------------
     @ random0to80
     @     xorshiftにより0から80までのランダムな値を返す
