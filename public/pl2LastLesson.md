@@ -63,7 +63,7 @@ ignorePublish: false
 * display: frame_bufferを表示
 * input_button: 押されたボタンを返す
 * led_out: 入力によって点灯パターンを変化させる
-* random0to80: 0から80までのランダムな値を返す
+* random0to63: 0から63までのランダムな値を返す
 and more…
 
 ## コード例:メインのみ（疑似コード）
@@ -94,16 +94,16 @@ game_loop:
 [--- LMS資料 ---](https://lms.kochi-tech.ac.jp/pluginfile.php/207510/mod_resource/content/1/%E3%82%B5%E3%83%95%E3%82%99%E3%83%AB%E3%83%BC%E3%83%81%E3%83%B3.pdf)
 
 プログラム冒頭に仕様を記述したコメントを書くこと
-```assembly:random0to80.s
+```assembly:random0to63.s
 @--------------------------------------------------
-    @ random0to80
-    @     xorshiftにより0から80までのランダムな値を返す
+    @ random0to63
+    @     xorshiftにより0から63までのランダムな値を返す
     @ input:
     @     none
     @ return_value:
-    @     r0: 0 to 80 のランダムな値
+    @     r0: 0 to 63 のランダムな値
 @--------------------------------------------------
-random0to80:
+random0to63:
     push    {r1 - r3, lr}
 
     @ 初期値
@@ -139,8 +139,8 @@ random0to80:
     movs    r1, r0
     rsbmi   r1, r1, #0
 
-    @ x % 81
-    mov     r2, #81
+    @ x % 64
+    mov     r2, #64
     udiv    r3, r1, r2
     mul     r0, r3, r2
     sub     r0, r1, r0
