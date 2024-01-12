@@ -94,6 +94,7 @@ game_loop:
 [--- LMS資料 ---](https://lms.kochi-tech.ac.jp/pluginfile.php/207510/mod_resource/content/1/%E3%82%B5%E3%83%95%E3%82%99%E3%83%AB%E3%83%BC%E3%83%81%E3%83%B3.pdf)
 
 プログラム冒頭に仕様を記述したコメントを書くこと
+### コード例
 ```assembly:random0to63.s
 @--------------------------------------------------
     @ random0to63
@@ -103,6 +104,8 @@ game_loop:
     @ return_value:
     @     r0: 0 to 63 のランダムな値
 @--------------------------------------------------
+    .section .text
+    .global random0to63
 random0to63:
     push    {r1 - r3, lr}
 
