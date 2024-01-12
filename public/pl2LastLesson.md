@@ -11,7 +11,15 @@ organization_url_name: null
 slide: false
 ignorePublish: false
 ---
+
 # 情報学群実験第2最終課題設計書
+
+<details><summary>参考</summary>
+
+[PWMで和音](https://ameblo.jp/ringworldengineer/entry-12345071870.html)
+
+</details>
+
 ## 概要
 このプロジェクトは、8x8マスのスネークゲームをアセンブリ言語で実装するものである。<br>
 ゲームは砲弾型LED(緑)、ビープスピーカー、および4つの操作用ボタンを使用してプレイヤーが操作する。
