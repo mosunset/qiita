@@ -31,10 +31,11 @@ ignorePublish: false
 </details>
 
 ## 機能要件
-1. スネークの成長と移動
-2. 4つのボタンを使用した方向制御
-3. マス上に表示されるLEDによるゲーム状態表示
-4. 単音式スピーカーを使用したゲームイベントのサウンド通知
+* スネークの成長と移動
+* 4つのボタンを使用した方向制御
+* マス上に表示されるLEDによるゲーム状態表示
+* 単音式スピーカーを使用したゲームイベントのサウンド通知
+* 
 
 ## ハードウェア構成
 - 8x8 LEDマトリックス（赤）
@@ -59,14 +60,36 @@ ignorePublish: false
 
 ## コード構成例
 * メイン: `.section .init`のある実行開始ルーチン
-  * 以下サブルーチン
-* display: frame_bufferを表示
-* input_button: 押されたボタンを返す
-* led_out: 入力によって点灯パターンを変化させる
-* random0to63: 0から63までのランダムな値を返す
+### 以下サブルーチン
+* setting.s: 初期設定をまとめる
+* display.s: frame_bufferを表示
+  * frame_bufferを内蔵
+  * input:  none
+  * output: none
+* number.s: frame_bufferに2桁の数字を表示
+  * input: r1: 数字, r2: 進数
+  * output: none
+* switch1.s: 押されたボタンを返す
+* switch2.s: 〃
+* switch3.s: 〃
+* switch4.s: 〃
+  * input:  none
+  * output: r0: 0-押してない 1-押している
+* ledon.s: 砲弾型LEDを点灯させる
+  * input:  none
+  * output: none
+* ledoff.s: 砲弾型LEDを消灯させる
+* random0to63.s: 0から63までのランダムな値を返す
+  * input: none
+  * output: r0: 0 to 63 のランダムな値
+* sound.s: 一音鳴らす
+  * input: r1: 音のコード (69 A4 440)
+  * output: none
+
+
 and more…
 
-## コード例:メインのみ（疑似コード）
+<!-- ## コード例:メインのみ（疑似コード）
 
 ```assembly
 section .data
@@ -88,7 +111,7 @@ game_loop:
     @ イベント発生時のサウンド通知
     @ ゲームオーバーの場合、終了
     @ ゲームループの再実行
-```
+``` -->
 
 ## サブルーチン化
 [--- LMS資料 ---](https://lms.kochi-tech.ac.jp/pluginfile.php/207510/mod_resource/content/1/%E3%82%B5%E3%83%95%E3%82%99%E3%83%AB%E3%83%BC%E3%83%81%E3%83%B3.pdf)
